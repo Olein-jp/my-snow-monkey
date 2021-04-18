@@ -1,8 +1,8 @@
 <?php
 /**
  * Plugin name: My Snow Monkey
- * Description: このプラグインに、あなたの Snow Monkey 用カスタマイズコードを書いてください。
- * Version: 0.2.1
+ * Description: Olein Design 制作の My Snow Monkey
+ * Version: 1.0.0
  *
  * @package my-snow-monkey
  * @author inc2734
@@ -30,3 +30,30 @@ define( 'MY_SNOW_MONKEY_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
  * @var string
  */
 define( 'MY_SNOW_MONKEY_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
+
+/**
+ * Register style
+ */
+add_action(
+	'wp_enqueue_scripts',
+	function() {
+		wp_enqueue_style(
+			'my-snow-monkey-style',
+			MY_SNOW_MONKEY_URL . '/style.css',
+			[ Framework\Helper::get_main_style_handle() ],
+			filemtime( plugin_dir_path( __FILE__ ) )
+		);
+	}
+);
+
+/**
+ * Register Style for Editor
+ */
+add_action(
+	'after_setup_theme',
+	function() {
+		add_theme_support( 'editor-styles' );
+
+		add_editor_style( plugins_url( 'editor-style.css', __FILE__ ) );
+	}
+);
