@@ -39,7 +39,7 @@ add_action(
 	function() {
 		wp_enqueue_style(
 			'my-snow-monkey-style',
-			MY_SNOW_MONKEY_URL . '/style.css',
+			MY_SNOW_MONKEY_URL . '/build/style.css',
 			[ Framework\Helper::get_main_style_handle() ],
 			filemtime( plugin_dir_path( __FILE__ ) )
 		);
@@ -54,6 +54,6 @@ add_action(
 	function() {
 		add_theme_support( 'editor-styles' );
 
-		add_editor_style( plugins_url( 'editor-style.css', __FILE__ ) );
+		add_editor_style( plugins_url( 'build/editor-style.css', __FILE__ ) );
 	}
 );

@@ -3,7 +3,15 @@
   "license": "GPL-2.0+",
   "devDependencies": {
     "@wordpress/env": "^4.0.2",
+    "autoprefixer": "^10.2.5",
+    "css-mqpacker": "^7.0.0",
+    "cssnano": "^5.0.2",
+    "node-sass": "^5.0.0",
     "npm-run-all": "^4.1.5",
+    "postcss": "^8.2.14",
+    "postcss-cli": "^8.3.1",
+    "postcss-import": "^14.0.1",
+    "postcss-mq-optimize": "^1.1.0",
     "rimraf": "^3.0.2"
   },
   "scripts": {
@@ -15,6 +23,9 @@
     "pretest": "wp-env start && wp-env run composer 'install --no-interaction'",
     "test:lint:php": "wp-env run composer run-script lint",
     "test:lint": "run-s test:lint:*",
-    "test": "run-s test:*"
+    "test": "run-s test:*",
+    "clean": "rimraf build",
+    "build:css": "node-sass src/ -o build && postcss build/*.css -r",
+    "build": "npm run clean && npm-run-all -s build:*"
   }
 }
