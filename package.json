@@ -24,8 +24,10 @@
     "test:lint:php": "wp-env run composer run-script lint",
     "test:lint": "run-s test:lint:*",
     "test": "run-s test:*",
+    "check": "composer format && composer lint",
     "clean": "rimraf build",
-    "build:css": "node-sass src/ -o build && postcss build/*.css -r",
-    "build": "npm run clean && npm-run-all -s build:*"
+    "compile:css": "node-sass src/ -o build && postcss build/*.css -r",
+    "compile": "npm run clean && npm-run-all -s compile:*",
+    "build": "npm run check && npm run compile"
   }
 }
