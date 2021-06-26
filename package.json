@@ -3,6 +3,7 @@
   "license": "GPL-2.0+",
   "devDependencies": {
     "@wordpress/env": "^4.0.2",
+    "@wordpress/scripts": "^16.1.3",
     "autoprefixer": "^10.2.5",
     "css-mqpacker": "^7.0.0",
     "cssnano": "^5.0.2",
@@ -26,7 +27,8 @@
     "test": "run-s test:*",
     "check": "composer format && composer lint",
     "clean": "rimraf build",
-    "compile:css": "node-sass src/ -o build && postcss build/*.css -r",
+    "compile:css": "node-sass src/css -o build/css && postcss build/css/*.css -r",
+    "compile:js": "wp-scripts build src/js/scripts --output-path=build/js",
     "compile": "npm run clean && npm-run-all -s compile:*",
     "build": "npm run check && npm run compile"
   }
